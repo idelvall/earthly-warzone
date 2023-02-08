@@ -2,7 +2,7 @@ VERSION 0.6
 FROM golang:1.19-alpine
 IMPORT ../../ AS root
 
-root-artifact:
-  COPY root+artifact/artifact artifact
-  RUN cat artifact
+root-artifacts:
+  COPY root+artifact/artifacts/*1 artifacts/
+  RUN ls artifacts
 

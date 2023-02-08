@@ -14,8 +14,12 @@ greet-foo:
   DO bar+GREET
 
 artifact:
-  RUN echo "root"> artifact
-  SAVE ARTIFACT artifact
+  RUN mkdir artifacts
+  RUN echo "root"> artifacts/a1
+  RUN echo "root"> artifacts/a2
+  RUN echo "root"> artifacts/b1
+  RUN echo "root"> artifacts/b2
+  SAVE ARTIFACT artifacts
 
 foo-artifact:
   COPY bar+artifact/artifact artifact
