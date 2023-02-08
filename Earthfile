@@ -1,4 +1,4 @@
-VERSION 0.6
+VERSION  --shell-out-anywhere --use-cache-command --use-copy-include-patterns --use-host-command 0.6
 FROM golang:1.19-alpine
 IMPORT ./foo AS bar
 GREET:
