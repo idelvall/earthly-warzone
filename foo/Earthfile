@@ -1,0 +1,10 @@
+VERSION 0.6
+FROM golang:1.19-alpine
+
+GREET:
+  COMMAND
+  RUN echo "Hello foo"
+
+greet:
+  ARG name
+  DO ../+GREET --name=$name
