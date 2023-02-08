@@ -3,6 +3,8 @@ FROM golang:1.19-alpine
 IMPORT ../../ AS root
 
 root-artifacts:
+  FROM DOCKERFILE .
   COPY root+artifact/artifacts/*1 artifacts/
   RUN ls artifacts
+  RUN cat docker
 
