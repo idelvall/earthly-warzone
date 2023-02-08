@@ -12,3 +12,11 @@ greet:
 
 greet-foo:
   DO ./foo/+GREET
+
+artifact:
+  RUN echo "root"> artifact
+  SAVE ARTIFACT artifact
+
+foo-artifact:
+  COPY ./foo+artifact/artifact artifact
+  RUN cat artifact

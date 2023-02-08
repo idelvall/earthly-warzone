@@ -5,6 +5,15 @@ GREET:
   COMMAND
   RUN echo "Hello foo"
 
+artifact:
+  RUN echo "fooo"> artifact
+  SAVE ARTIFACT artifact
+
 greet:
   ARG name
   DO ../+GREET --name=$name
+
+root-artifact:
+  COPY ../+artifact/artifact artifact
+  RUN cat artifact
+
