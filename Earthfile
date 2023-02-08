@@ -1,6 +1,6 @@
 VERSION 0.6
 FROM golang:1.19-alpine
-
+IMPORT ./foo AS bar
 GREET:
   COMMAND
   ARG name
@@ -11,12 +11,12 @@ greet:
   DO +GREET --name=$name
 
 greet-foo:
-  DO ./foo/+GREET
+  DO bar+GREET
 
 artifact:
   RUN echo "root"> artifact
   SAVE ARTIFACT artifact
 
 foo-artifact:
-  COPY ./foo+artifact/artifact artifact
+  COPY bar+artifact/artifact artifact
   RUN cat artifact

@@ -1,5 +1,6 @@
 VERSION 0.6
 FROM golang:1.19-alpine
+IMPORT ../ AS root
 
 GREET:
   COMMAND
@@ -14,6 +15,6 @@ greet:
   DO ../+GREET --name=$name
 
 root-artifact:
-  COPY ../+artifact/artifact artifact
+  COPY root+artifact/artifact artifact
   RUN cat artifact
 
