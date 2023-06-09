@@ -1,26 +1,17 @@
-VERSION  --shell-out-anywhere --use-cache-command --use-copy-include-patterns --use-host-command 0.6
-FROM golang:1.19-alpine
-IMPORT ./foo AS bar
-GREET:
-  COMMAND
-  ARG name
-  RUN echo "Hello $name"
+VERSION 0.7
 
-greet:
-  ARG name
-  DO +GREET --name=$name
+FROM alpine
 
-greet-foo:
-  DO bar+GREET
+PROJECT idelvall/test
 
-artifact:
-  RUN mkdir artifacts
-  RUN echo "root"> artifacts/a1
-  RUN echo "root"> artifacts/a2
-  RUN echo "root"> artifacts/b1
-  RUN echo "root"> artifacts/b2
-  SAVE ARTIFACT artifacts
+work:
+    ARG seconds = 100
+    RUN echo "Hello!"
+    RUN echo "This process will run for $seconds seconds"
+    RUN for i in $(seq 1 $seconds); do echo $i; sleep 1; done
 
-foo-artifact:
-  COPY bar+artifact/artifact artifact
-  RUN cat artifact
+pipeline-100:
+    PIPELINE
+    TRIGGER push main
+    TRIGGER pr main
+    BUILD +work --seconds=100
