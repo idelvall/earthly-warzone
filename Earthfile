@@ -2,7 +2,7 @@ VERSION 0.7
 
 FROM alpine
 
-PROJECT idelvall/test
+PROJECT nacho-org/test
 
 work:
     ARG seconds = 100
